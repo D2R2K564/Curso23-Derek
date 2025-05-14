@@ -1,6 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 /*Barra de navegacion*/
 nav {
-  background-color: #0055ff;
+  background-color: #b3bfd7;
   color: white;
   font-size: 25px;
   display: flex;
