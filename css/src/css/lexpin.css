@@ -5,8 +5,8 @@
 
 /*Barra de navegacion*/
 nav {
-  background-color: #485672;
-  color: rgb(17, 14, 14);
+  background-color: #466bb4;
+  color: rgb(250, 245, 245);
   font-size: 25px;
   display: flex;
   /* eje principal, solo se puede usar si el elemento es display flex */
@@ -35,4 +35,27 @@ nav div {
   /*Espaciado entre los elementos de la fila o columna*/
   gap: 20px
 }
+/*
+  Las pseudoclases manejan el estado de un elemento
+  :hover se activa cuando el mouse pasa por encima del elemento
+  :active se activa cuando el elemento es presionado
+  :focus se activa cuando el elemento es seleccionado
+  :visited se activa cuando el elemento es visitado
+  :link se activa cuando el elemento es un link
+  :first-child se activa cuando el elemento es el primer hijo de su padre
+  :last-child se activa cuando el elemento es el último hijo de su padre
+*/
+nav div a:visited, nav div a:link {
+  color:white;
+  text-decoration: none;
+}
+
+.enlace:hover {
+  color: #131414;
+}
+/*
+  nav div a {
+    margin: 0 20px;
+  }
+*/
 
