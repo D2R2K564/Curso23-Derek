@@ -21,7 +21,7 @@ nav {
   padding: 20px 0 20px 0; 20 arriba, 0 derecha, 20 abajo, 0 izquierda
   */
   padding: 20px;
-   /*Radio de los bordes, se lee arriba izquierda, arriba derecha
+  /*Radio de los bordes, se lee arriba izquierda, arriba derecha
   abajo izquierda, abajo derecha*/
   border-radius: 0 0 15px 15px;
 }

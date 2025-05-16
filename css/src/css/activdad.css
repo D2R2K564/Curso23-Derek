@@ -46,14 +46,21 @@ main>.seccion1>div>h2{
   font-size: 50px;
   text-align: center;
   margin: 0 80px;
-  
   width: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 
 }
-button{
+
+main>.seccion1>div>img{
+  max-width: 100%;
+  height: auto;
+  margin: 20px 0;
+  border-radius: 15px 15px 15px 15px;
+}
+
+main>div>button{
   background-color: #3d3d5a;
   color: white;
   border: none;
