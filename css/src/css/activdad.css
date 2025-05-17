@@ -17,12 +17,13 @@ main {
   padding: 60px;
   display: flex;
   flex-direction: column;
-  gap: 100px;
+  gap: 50px;
 }
 
 main>.seccion1{
   display: flex;
   justify-content: center;
+  gap: 50px;
 }
 
 main>.seccion1>div{
@@ -41,6 +42,7 @@ main>.seccion1>div>p{
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 20px;
 }
 
 main>.seccion1>div>h2{

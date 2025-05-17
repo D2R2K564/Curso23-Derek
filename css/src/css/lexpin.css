@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: "Space Grotesk", sans-serif;
   }
 
 /*Barra de navegacion*/
@@ -25,6 +26,7 @@ nav {
   abajo izquierda, abajo derecha*/
   border-radius: 0 0 15px 15px;
 }
+
 
 /*
   nav div selecciona todos los divs dentro de nav
