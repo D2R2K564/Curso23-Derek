@@ -100,3 +100,14 @@ console.log(objeto.nombre); // Imprime "Juan" (acceso a una propiedad del objeto
   - `find()`: Devuelve el primer elemento del array que cumple con la condición proporcionada en la función.
   - `includes()`: Verifica si un elemento está presente en el array.
 */
+
+ //this es un objeto que funciona en el contexto de la clase
+    //al decir this.nombre, estoy creando una propiedad nombre en el objeto this
+    //Debido a que this funciona en toda la clase, ahora podre llamar a this.nombre en otras funciones si eso deseo
+
+/*
+  La herencia.
+  Una clase puede heredar propiedades de otra. Piensa en ello como una serie de conjuntos, un ser vivo tiene
+  ciertas propiedades, pero un gato no tiene las mismas propiedades o metodos que un humano
+  aunque ambos son seres vivos. Sin embargo, si comparten ciertas cosas al ambos ser seres humanos
+*/

@@ -464,3 +464,155 @@ function validarNombre(nombre) {
   }
   return true;
 }
+
+/*
+  1. Crea una función que reciba un texto o parrafo y verifique si contiene alguna las siguientes malas palabras:
+  - "tonto"
+  - "chispas"
+  - "recorcholis"
+  - "rayos"
+  - "caracoles"
+  - "cielos"
+  Si el texto contiene alguna de estas palabras, sustituye por "****" y retorna el texto modificado.
+  Si no contiene ninguna, retorna el texto original.
+*/
+
+function evaluar_malas_palabras(texto) {
+  //array de malas palabras
+  let malasPalabras = [
+    "tonto",
+    "chispas",
+    "recorcholis",
+    "rayos",
+    "caracoles",
+    "cielos",
+  ];
+
+  //por cada mala palabra en el array ejecuto una función
+  malasPalabras.forEach((palabra) => {
+    //si el texto incluye la mala palabra ejecuto un codigo
+    if (texto.includes(palabra)) {
+      //hago que texto sea igual al texto modificado, es decir. El texto en minuscula con la
+      //mala palabra remplazada
+      texto = texto
+        .toLowerCase()
+        .replaceAll(palabra, "*".repeat(palabra.length));
+    }
+  });
+
+  return texto;
+}
+
+console.log(
+  evaluar_malas_palabras(
+    "rayos, jhonny es un tonto. Cielos, esto me desespera."
+  )
+);
+
+/*
+  2. Según el siguiente array de objetos
+  let personas = [
+    { nombre: "Juan", edad: 25, pais: "España", sexo: "masculino" },
+    { nombre: "María", edad: 30, pais: "México", sexo: "femenino" },
+    { nombre: "Pedro", edad: 22, pais: "Argentina", sexo: "masculino" },
+    { nombre: "Ana", edad: 28, pais: "Chile", sexo: "femenino" },
+    { nombre: "Luis", edad: 35, pais: "España", sexo: "masculino" },
+  ];
+
+  Crea un código que me haga un filtro del array creando un nuevo array que contenga solo
+  las personas que sean mayores de 25 años.
+
+  Luego haz un código que me cree un nuevo array con las personas sean de españa y sean hombres
+
+  Fecha de entrega: 11/07/25
+*/
+
+let personas = [
+  { nombre: "Juan", edad: 25, pais: "España", sexo: "masculino" },
+  { nombre: "María", edad: 30, pais: "México", sexo: "femenino" },
+  { nombre: "Pedro", edad: 22, pais: "Argentina", sexo: "masculino" },
+  { nombre: "Ana", edad: 28, pais: "Chile", sexo: "femenino" },
+  { nombre: "Luis", edad: 35, pais: "España", sexo: "masculino" },
+];
+
+console.log(personas.filter((persona) => persona.edad > 25));
+
+console.log(
+  personas.filter(
+    (persona) =>
+      persona.pais.toLocaleLowerCase() == "españa" &&
+      persona.sexo == "masculino"
+  )
+);
+
+/*
+  POO (Programación Orientada a Objetos)
+  La POO es un paradigma de programación que organiza el código en objetos, que son instancias de clases.
+  Los objetos pueden tener propiedades (atributos) y métodos (funciones).
+*/
+
+let carro = {
+  modelo: "mustang",
+  marca: "ford",
+  anio: "2013",
+  kilometraje: 232000,
+  encender: () => {
+    console.log("Encendiendo");
+  },
+};
+
+carro.volante = true;
+console.log(carro);
+
+carro.encender();
+
+/*
+  Las clases son moldes de objetos
+*/
+
+class Personaje {
+  //constructor recibe los parametros de la clase
+
+  constructor(nombre, vida, defensa) {
+    //this es un objeto que funciona en el contexto de la clase
+    //al decir this.nombre, estoy creando una propiedad nombre en el objeto this
+    //Debido a que this funciona en toda la clase, ahora podre llamar a this.nombre en otras funciones si eso deseo
+    this.nombre = nombre;
+    this.vida = vida;
+    this.defensa = defensa;
+  }
+
+  atacar() {
+    console.log(`${this.name} ataca con su puño`);
+  }
+}
+
+let jhon = new Personaje("Jhonny", 200, 12);
+let jeremy = new Personaje("Jeremy", 180, 10);
+
+jhon.atacar();
+jeremy.atacar();
+
+/*
+  La herencia.
+  Una clase puede heredar propiedades de otra. Piensa en ello como una serie de conjuntos, un ser vivo tiene
+  ciertas propiedades, pero un gato no tiene las mismas propiedades o metodos que un humano
+  aunque ambos son seres vivos. Sin embargo, si comparten ciertas cosas al ambos ser seres humanos
+*/
+
+class Arquero extends Personaje {
+  constructor(nombre, vida, defensa, precision) {
+    super(nombre, vida, defensa); // Llama al constructor de la clase base Personaje
+    this.precision = precision; // Agrega una nueva propiedad específica de Arquero
+  }
+
+  atacar_con_arco() {
+    console.log(
+      `${this.nombre} ataca con su arco y flecha con precisión ${this.precision}`
+    );
+  }
+}
+
+let arquero = new Arquero("Legolas", 220, 13, 93);
+arquero.atacar();
+arquero.atacar_con_arco();
