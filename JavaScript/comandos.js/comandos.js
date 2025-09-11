@@ -111,3 +111,6 @@ console.log(objeto.nombre); // Imprime "Juan" (acceso a una propiedad del objeto
   ciertas propiedades, pero un gato no tiene las mismas propiedades o metodos que un humano
   aunque ambos son seres vivos. Sin embargo, si comparten ciertas cosas al ambos ser seres humanos
 */
+/**
+ * 
+ */

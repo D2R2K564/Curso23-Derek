@@ -79,14 +79,12 @@
 */
 
 class Personaje {
-constructor(nombre,vida,dano,defensa,velocidad,atacar,saludar){
+constructor(nombre,vida,dano,defensa,velocidad,){
   this.nombre = nombre;
   this.vida = vida ;
   this.dano = dano;
   this.defensa = defensa;
   this.velocidad = velocidad;
-  this.atacar = atacar;
-  this.saludar = saludar;
 }
 saludar(){
   console.log(`hola un gusto mi nombres es ${this.nombre} y soy civil`)
@@ -97,12 +95,10 @@ atacar(){
 }
 
 let juan = new Personaje("juan",200,35,10,10);
-juan.atacar();
-
 
 class guerrero extends Personaje{
-  constructor(nombre,vida,dano,defensa,velocidad,atacar,saludar,arma){
-  super(nombre,vida,dano,defensa,velocidad,atacar,saludar)
+  constructor(nombre,vida,dano,defensa,velocidad,arma){
+  super(nombre,vida,dano,defensa,velocidad,arma)
   this.arma = [
     { nombre: "Espada Libertadora", dano: 50 },
     { nombre: "Machetes", dano: 30 },
@@ -115,27 +111,24 @@ class guerrero extends Personaje{
     console.log(`hola un gusto mi nombre es ${this.nombre} Y SOY UN GERRERO DE SPARTA!!!`)
   }
   atacar(){
-    console.log(`${this.nombre}ataca con su puño`)
+    console.log(`${this.nombre} ataca con su puño`)
   }
   atacar_con_arma(){
   const indice = Math.floor(Math.random() * this.arma.length);
-  console.log(`${this.nombre} ataca con su ${this.arma[indice]} que causa ${arma.dano} de daño`);
+  const arma= this.arma[indice];
+  console.log(`${this.nombre} ataca con su ${arma.nombre} que causa ${arma.dano} de daño`);
   }
 
 }
 
 let guerrero1 = new guerrero("Kratos",230,20,25,10);
-guerrero.atacar();
-guerrero.atacar_con_arma();
 
 let guerrero2 = new guerrero("Atreus",210,20,20,10);
-guerrero.atacar();
-guerrero.atacar_con_arma();
 
 class Mago extends Personaje {
-  constructor(nombre, vida, dano, defensa, velocidad) {
-    super(nombre, vida, dano, defensa, velocidad);
-    this.array_de_hechizos = [
+  constructor(nombre, vida, dano, defensa, velocidad,hechizo) {
+    super(nombre, vida, dano, defensa, velocidad,hechizo);
+    this.hechizos = [
       { nombre: "bola de fuego", dano: 40 },
       { nombre: "rayo", dano: 30 },
       { nombre: "tormenta de hielo", dano: 35 },
@@ -149,22 +142,18 @@ class Mago extends Personaje {
     console.log(`${this.nombre} ataca con su puño`);
   }
   atacar_con_hechizo() {
-    const indice = Math.floor(Math.random() * this.array_de_hechizos.length);
-    console.log(`${this.nombre} ataca con el hechizo ${this.array_de_hechizos[indice]} que causa ${this.array_de_hechizos.dano} de daño`);
+    const indice = Math.floor(Math.random() * this.hechizos.length);
+    const hechizo = this.hechizos[indice]; 
+    console.log(`${this.nombre} ataca con el hechizo ${hechizo.nombre} que causa ${hechizo.dano} de daño`);
   }
 }
 let Mago1 = new Mago ("Harry Potter",210,25,20,10);
-Mago.atacar();
-Mago.atacar_con_hechizo();
 
 let Mago2 = new Mago("Boldemor",210,20,15,10);
-Mago.atacar(),
-Mago.atacar_con_hechizo()
-
 
 class Arquero extends Personaje {
   constructor(nombre, vida, dano, defensa, velocidad, presicion) {
-    super(nombre, vida, dano, defensa, velocidad);
+    super(nombre, vida, dano, defensa, velocidad,presicion);
     this.presicion = presicion;
     this.ataque_de_flechas = [
       { nombre: "flecha normal", dano: 15 },
@@ -187,9 +176,9 @@ class Arquero extends Personaje {
   }
 }
 
-let arquera = new Arquero("Juana de Arco", 220, 20, 20, 10);
-arquero.atacar();
-arquero.atacar_arco();
+let arquero = new Arquero("Juana de Arco", 220, 20, 20, 10);
+
+// ...definición de clases y personajes igual que antes...
 
 let personajes = [
   juan,
@@ -197,58 +186,73 @@ let personajes = [
   guerrero2,
   Mago1,
   Mago2,
-  arquera
+  arquero
 ];
 
+// Saludo inicial
 for (let personaje of personajes) {
   personaje.saludar();
 }
 
-console.log("=== Ronda de ataques ===");
+let ronda = 1;
+while (personajes.filter(p => p.vida > 0).length > 1) {
+  console.log(`\n=== Ronda ${ronda} ===`);
+  // Orden de ataque según velocidad y azar
+  let orden = personajes
+    .filter(p => p.vida > 0)
+    .map(p => ({
+      personaje: p,
+      iniciativa: Math.floor(Math.random() * p.velocidad) + 1
+    }))
+    .sort((a, b) => b.iniciativa - a.iniciativa)
+    .map(obj => obj.personaje);
 
-for (let atacante of personajes) {
-  let posiblesObjetivos = personajes.filter(p => p !== atacante && p.vida > 0);
-  if (posiblesObjetivos.length === 0) continue; // Si no hay objetivos, salta
-
-  // Selecciona un objetivo aleatorio
-  let objetivo = posiblesObjetivos[Math.floor(Math.random() * posiblesObjetivos.length)];
-
-  // Decide tipo de ataque (1/3 puño, 2/3 especial)
-  let tipoAtaque = Math.random();
-  if (tipoAtaque < 1/3) {
-    atacante.atacar();
-    console.log(`${atacante.nombre} ataca a ${objetivo.nombre} con su puño`);
-    var dano = atacante.dano;
-  } else {
-    // Según la clase, usa el ataque especial
-    if (atacante instanceof guerrero) {
-      atacante.atacar_con_arma();
-      var dano = atacante.arma[Math.floor(Math.random() * atacante.arma.length)].dano;
-      console.log(`${atacante.nombre} ataca a ${objetivo.nombre} con un arma`);
-    } else if (atacante instanceof Mago) {
-      atacante.atacar_con_hechizo();
-      var dano = atacante.array_de_hechizos[Math.floor(Math.random() * atacante.array_de_hechizos.length)].dano;
-      console.log(`${atacante.nombre} ataca a ${objetivo.nombre} con un hechizo`);
-    } else if (atacante instanceof Arquero) {
-      atacante.atacar_arco();
-      var dano = atacante.ataque_de_flechas[Math.floor(Math.random() * atacante.ataque_de_flechas.length)].dano;
-      console.log(`${atacante.nombre} ataca a ${objetivo.nombre} con una flecha`);
-    } else {
+  for (let atacante of orden) {
+    if (atacante.vida <= 0) continue; // No ataca si está muerto
+    let posiblesObjetivos = personajes.filter(p => p !== atacante && p.vida > 0);
+    if (posiblesObjetivos.length === 0) continue;
+    let objetivo = posiblesObjetivos[Math.floor(Math.random() * posiblesObjetivos.length)];
+    let tipoAtaque = Math.random();
+    let dano;
+    if (tipoAtaque < 1/3) {
       atacante.atacar();
-      var dano = atacante.dano;
+      console.log(`${atacante.nombre} ataca a ${objetivo.nombre} con su puño`);
+      dano = atacante.dano;
+    } else {
+      if (atacante instanceof guerrero) {
+        atacante.atacar_con_arma();
+        dano = atacante.arma[Math.floor(Math.random() * atacante.arma.length)].dano;
+        console.log(`${atacante.nombre} ataca a ${objetivo.nombre} con un arma`);
+      } else if (atacante instanceof Mago) {
+        atacante.atacar_con_hechizo();
+        dano = atacante.hechizos[Math.floor(Math.random() * atacante.hechizos.length)].dano;
+        console.log(`${atacante.nombre} ataca a ${objetivo.nombre} con un hechizo`);
+      } else if (atacante instanceof Arquero) {
+        atacante.atacar_arco();
+        dano = atacante.ataque_de_flechas[Math.floor(Math.random() * atacante.ataque_de_flechas.length)].dano;
+        console.log(`${atacante.nombre} ataca a ${objetivo.nombre} con una flecha`);
+      } else {
+        atacante.atacar();
+        dano = atacante.dano;
+      }
+    }
+    let defensa = Math.floor(Math.random() * objetivo.defensa) + 1;
+    if (defensa > dano) {
+      console.log(`${objetivo.nombre} se defendió exitosamente. ¡El ataque falló!`);
+    } else {
+      objetivo.vida -= dano;
+      console.log(`${objetivo.nombre} recibió ${dano} de daño. Vida restante: ${objetivo.vida}`);
+      if (objetivo.vida <= 0) {
+        console.log(`${objetivo.nombre} ha muerto y no puede atacar más.`);
+      }
     }
   }
+  ronda++;
+}
 
-  // Defensa del objetivo
-  let defensa = Math.floor(Math.random() * objetivo.defensa) + 1;
-  if (defensa > dano) {
-    console.log(`${objetivo.nombre} se defendió exitosamente. ¡El ataque falló!`);
-  } else {
-    objetivo.vida -= dano;
-    console.log(`${objetivo.nombre} recibió ${dano} de daño. Vida restante: ${objetivo.vida}`);
-    if (objetivo.vida <= 0) {
-      console.log(`${objetivo.nombre} ha muerto y no puede atacar más.`);
-      
-    }
-  }
+let ganador = personajes.find(p => p.vida > 0);
+if (ganador) {
+  console.log(`\n¡El ganador es ${ganador.nombre}!`);
+} else {
+  console.log(`"\nNo hay ganador."`);
 }
