@@ -114,3 +114,110 @@ console.log(objeto.nombre); // Imprime "Juan" (acceso a una propiedad del objeto
 /**
  * 
  */
+
+/*
+  Regex (Regular expressions)
+  Las expresiones regulares son patrones utilizados para buscar y manipular texto.
+  Son muy útiles para validar formatos, buscar coincidencias, reemplazar texto, etc.
+*/
+
+// /patron/modificador
+/*
+  ^      -> Inicio de la cadena
+  $      -> Fin de la cadena
+  []      -> Conjunto de caracteres
+  {n}   -> Cantidad exacta de repeticiones
+  {n,}  -> Mínimo n repeticiones
+  {n,m} -> Entre n y m repeticiones
+  +    -> Una o más repeticiones
+  *    -> Cero o más repeticiones
+  ?    -> Cero o una repetición
+  \d   -> Dígitos (0-9)
+  \w   -> Caracteres alfanuméricos (letras, números y guiones bajos)
+  \s   -> Espacios en blanco
+  \D   -> No dígitos
+  \W   -> No caracteres alfanuméricos
+  \S   -> No espacios en blanco
+  .    -> Cualquier carácter excepto saltos de línea
+  |    -> Alternativa (OR)
+  modificadores:
+  g    -> Búsqueda global (todas las coincidencias)
+  i   -> Ignorar mayúsculas y minúsculas
+*/
+
+// Document Object Model (DOM) y Programación Orientada a Eventos (POE):
+
+/**
+ * Recuperar elementos desde el DOM
+ *
+ * El método querySelector() devuelve el primer elemento que coincide con el selector especificado en el documento.
+ * El selector especificado puede ser un nombre de elemento HTML, un nombre de clase, un nombre de ID o un selector CSS.
+ *
+ * Por ejemplo:
+ * - document.querySelector("p") devuelve el primer elemento <p> en el documento
+ * - document.querySelector("#title") devuelve el elemento con el ID "title"
+ * - document.querySelector(".message") devuelve el primer elemento con la clase "message" en el documento
+ *
+ * Se trata de una herramienta mucho más versátil que el uso de getElementById() y getElementsByClassName().
+ * quienes poseen comportamientos similares.
+ */
+
+/**
+ * Event listeners:
+ *
+ * Los event listeners son funciones que se ejecutan cuando un evento específico ocurre en un elemento del DOM.
+ * Algunos eventos comunes son:
+ * - click: Cuando se hace clic en un elemento
+ * - mouseover: Cuando el mouse pasa por encima de un elemento
+ * - mouseout: Cuando el mouse sale de un elemento
+ * - submit: Cuando se envía un formulario
+ * - change: Cuando el valor de un elemento cambia
+ *
+ * El metodo addEventListener() se utiliza para agregar un event listener a un elemento del DOM.
+ * El mismo espera dos párametos:
+ * - event: El evento a escuchar.
+ * - callback: La función que debe ejecutarse cuando el evento ocurra.
+ *
+ * El callback puede ser definido como una única función y asignado luego:
+ *
+ * ```
+ *    function callback() {
+ *      console.log("Button clicked!");
+ *    }
+ *
+ *    btn.addEventListener("click", callback);
+ * ```
+ *
+ * O enviado directamente como una función anónima:
+ *
+ * ```
+ *    btn.addEventListener("click", () => {
+ *      console.log("Button clicked!");
+ *    });
+ * ```
+ */
+
+/**
+ * Nota adicional:
+ *
+ * Usa element.classList.add() o element.classList.remove() para agregar o quitar clases de
+ * TailwindCSS de un elemento.
+ * También puedes usar element.classList.toggle() para entre clases.
+ */
+
+/**
+ * Alerts y Prompts
+ *
+ * Los alert() y prompt() son funciones que se utilizan para mostrar alertas y prompts en la pantalla del navegador.
+ * Se trata de pequeños avisos que se muestran en la parte superior de la pantalla.
+ * No son lo más recomendable de utilizar según los conceptos de UI/UX, pero hacen el trabajo.
+ */
+
+// nameInput.addEventListener("focus", createNewElementBasedOnInput);
+// emailInput.addEventListener("focus", createNewElementBasedOnInput);
+
+/**
+ * Manipulación del DOM (Document Object Model) en Formularios
+ *
+ * Los formularios son elementos que permiten a los usuarios enviar datos a un servidor.
+ */
